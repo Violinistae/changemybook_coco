@@ -27,5 +27,26 @@
                 </ul>
             </div>
         </nav>
+        <div class="container">
+            <h1 class="center">Registrarse</h1>
+            <div class="row">
+                <div class="col s4"></div>
+                <form class="col s4">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="username" type="text" class="validate">
+                            <label for="username">Nombre de Usuario</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Contraseña</label>
+                        </div>
+                        <div class="col s12 right-align">
+                            <a class="waves-effect waves-light btn blue"><i class="material-icons right">arrow_right</i>Continuar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
