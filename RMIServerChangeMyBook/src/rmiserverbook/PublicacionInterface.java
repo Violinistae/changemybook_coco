@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
-import librosrmiserver.*;
+package rmiserverbook;
+import db.models.Publicacion;
+import java.rmi.Remote;
+import java.util.ArrayList;
 
 /**
  *
  * @author Emiliano
  */
-public class CompraController {
+public interface PublicacionInterface extends Remote {
     
 }

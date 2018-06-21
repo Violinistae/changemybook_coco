@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package db.controllers;
+import db.DBmanage;
+import db.models.*;
 
 /**
  *
  * @author Emiliano
  */
-public class ForoController {
-    
+public class CompraController extends DBmanage {
+    public CompraController () {
+        
+    }
+       
 }

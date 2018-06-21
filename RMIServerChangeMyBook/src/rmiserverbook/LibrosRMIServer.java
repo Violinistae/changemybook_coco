@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package librosrmiserver;
+package rmiserverbook;
 
 import java.net.MalformedURLException;
 import java.rmi.AlreadyBoundException;
@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import db.controllers.*;
 
 /**
  *
@@ -23,13 +24,20 @@ public class LibrosRMIServer {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            
-            String name = "Operacion";
+        try {            
+            String name = "Usuario";
             LocateRegistry.createRegistry(1099);
-            OperacionesImp stub = new OperacionesImp();
-            Naming.bind(name, stub);
+            
+            UsuarioController userStub = new UsuarioController();
+            Naming.bind(name, userStub);
+            
+            name = "Publicacion";
+            PublicacionController pubStub = new PublicacionController();
+            Naming.bind(name, pubStub);
+            
+            
             System.out.println("Hola");
+                                               
         } catch (RemoteExceptioneException | AlreadyBoundException | MalformedURLException ex) {
             Logger.getLogger(LibrosRMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }

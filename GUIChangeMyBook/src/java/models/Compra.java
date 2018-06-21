@@ -11,11 +11,11 @@ import java.util.Date;
  *
  * @author Wero
  */
-public class compra {
+public class Compra {
     
     private int Id_Compra;
-    private usuario Comprador;
-    private publicacion Publicacion;
+    private Usuario Comprador;
+    private Publicacion Publicacion;
     private Date datetime;
 
     public int getId_Compra() {
@@ -26,19 +26,19 @@ public class compra {
         this.Id_Compra = Id_Compra;
     }
 
-    public usuario getComprador() {
+    public Usuario getComprador() {
         return Comprador;
     }
 
-    public void setComprador(usuario Comprador) {
+    public void setComprador(Usuario Comprador) {
         this.Comprador = Comprador;
     }
 
-    public publicacion getPublicacion() {
+    public Publicacion getPublicacion() {
         return Publicacion;
     }
 
-    public void setPublicacion(publicacion Publicacion) {
+    public void setPublicacion(Publicacion Publicacion) {
         this.Publicacion = Publicacion;
     }
 

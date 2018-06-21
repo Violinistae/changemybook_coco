@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package db.models;
 
 /**
  *
  * @author Wero
  */
-public class publicacion {
+public class Publicacion {
     
     private int Id_Pub;
     private String Texto;
-    private usuario Publicador;
+    private Usuario Publicador;
     private int Precio;
     private String Foto;
     private int EstadoP;

@@ -11,13 +11,13 @@ import java.util.Date;
  *
  * @author Wero
  */
-public class res_foro {
+public class Res_Foro {
     
     private int Id_RF;
     private String RespuestaM;
-    private usuario Remitente;
+    private Usuario Remitente;
     private Date Fecha;
-    private foro Mensaje;
+    private Foro Mensaje;
 
     public int getId_RF() {
         return Id_RF;
@@ -35,11 +35,11 @@ public class res_foro {
         this.RespuestaM = RespuestaM;
     }
 
-    public usuario getRemitente() {
+    public Usuario getRemitente() {
         return Remitente;
     }
 
-    public void setRemitente(usuario Remitente) {
+    public void setRemitente(Usuario Remitente) {
         this.Remitente = Remitente;
     }
 
@@ -51,11 +51,11 @@ public class res_foro {
         this.Fecha = Fecha;
     }
 
-    public foro getMensaje() {
+    public Foro getMensaje() {
         return Mensaje;
     }
 
-    public void setMensaje(foro Mensaje) {
+    public void setMensaje(Foro Mensaje) {
         this.Mensaje = Mensaje;
     }
     

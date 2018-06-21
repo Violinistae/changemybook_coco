@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package librosrmiserver;
+package db.controllers;
 
 /**
  *
  * @author Emiliano
  */
-public class DBmanage {
+public class ForoController {
     
 }

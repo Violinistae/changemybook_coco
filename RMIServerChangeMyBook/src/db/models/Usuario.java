@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package db.models;
 
 /**
  *
  * @author Wero
  */
-public class usuario {
+public class Usuario {
     
     private int Id_U;
     private String Username;
     private String Password;
-    private String Creditos;
+    private int Creditos;
     private String Hash;
     
 
@@ -42,11 +42,11 @@ public class usuario {
         this.Password = Password;
     }
 
-    public String getCreditos() {
+    public int getCreditos() {
         return Creditos;
     }
 
-    public void setCreditos(String Creditos) {
+    public int setCreditos(int Creditos) {
         this.Creditos = Creditos;
     }
 

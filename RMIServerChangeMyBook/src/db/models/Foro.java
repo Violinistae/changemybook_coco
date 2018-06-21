@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package db.models;
 
 import java.util.Date;
 
@@ -11,11 +11,11 @@ import java.util.Date;
  *
  * @author Wero
  */
-public class foro {
+public class Foro {
     
     private int Id_Mens;
     private String Mensaje;
-    private usuario Remitente;
+    private Usuario Remitente;
     private Date Fecha;
 
     public int getId_Mens() {
@@ -34,11 +34,11 @@ public class foro {
         this.Mensaje = Mensaje;
     }
 
-    public usuario getRemitente() {
+    public Usuario getRemitente() {
         return Remitente;
     }
 
-    public void setRemitente(usuario Remitente) {
+    public void setRemitente(Usuario Remitente) {
         this.Remitente = Remitente;
     }
 

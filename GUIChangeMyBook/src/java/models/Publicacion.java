@@ -9,11 +9,11 @@ package models;
  *
  * @author Wero
  */
-public class publicacion {
+public class Publicacion {
     
     private int Id_Pub;
     private String Texto;
-    private usuario Publicador;
+    private Usuario Publicador;
     private int Precio;
     private String Foto;
     private int EstadoP;
