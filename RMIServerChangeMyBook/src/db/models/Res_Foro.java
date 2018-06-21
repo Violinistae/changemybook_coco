@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Wero
  */
-public class Res_Foro {
+public class Res_Foro implements Serializable {
     
     private int Id_RF;
     private String RespuestaM;

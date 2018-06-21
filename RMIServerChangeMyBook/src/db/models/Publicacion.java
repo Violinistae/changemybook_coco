@@ -9,7 +9,7 @@ package db.models;
  *
  * @author Wero
  */
-public class Publicacion {
+public class Publicacion implements Serializable {
     
     private int Id_Pub;
     private String Texto;

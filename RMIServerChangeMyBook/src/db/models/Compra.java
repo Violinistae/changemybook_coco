@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Wero
  */
-public class Compra {
+public class Compra implements Serializable {
     
     private int Id_Compra;
     private Usuario Comprador;

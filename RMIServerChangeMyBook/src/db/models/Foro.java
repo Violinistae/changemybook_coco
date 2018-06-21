@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author Wero
  */
-public class Foro {
+public class Foro implements Serializable {
     
     private int Id_Mens;
     private String Mensaje;
