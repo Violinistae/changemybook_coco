@@ -114,7 +114,7 @@ public class PublicacionController extends UnicastRemoteObject implements Public
         } catch (SQLException ex) {
             System.out.println(ex);        
             return null;
-        }        
+        }
     }
     
     @Override

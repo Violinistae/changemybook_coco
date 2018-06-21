@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2018 a las 10:31:57
+-- Tiempo de generación: 21-06-2018 a las 22:51:10
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -87,7 +87,7 @@ CREATE TABLE `usuario` (
   `Id_U` int(11) NOT NULL,
   `Username` varchar(30) NOT NULL,
   `Password` varchar(120) NOT NULL,
-  `Creditos` varchar(120) NOT NULL,
+  `Creditos` mediumint(9) NOT NULL,
   `Hash` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

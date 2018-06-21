@@ -6,14 +6,17 @@
 package db.controllers;
 import db.DBmanage;
 import db.models.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import rmiserverbook.CompraInterface;
 
 /**
  *
  * @author Emiliano
  */
-public class CompraController extends DBmanage {
-    public CompraController () {
-        
+public class CompraController extends UnicastRemoteObject implements CompraInterface {
+    public CompraController () throws RemoteException{
+        super();
     }
        
 }

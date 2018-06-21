@@ -35,10 +35,21 @@ public class LibrosRMIServer {
             PublicacionController pubStub = new PublicacionController();
             Naming.bind(name, pubStub);
             
+            name = "Foro";
+            ForoController foroStub = new ForoController();
+            Naming.bind(name, foroStub);
+                        
+            name = "ResForo";
+            Res_ForoController resForoStub = new Res_ForoController();
+            Naming.bind(name, resForoStub);
             
-            System.out.println("Hola");
-                                               
-        } catch (RemoteExceptioneException | AlreadyBoundException | MalformedURLException ex) {
+            //Falta desarrollar controlador e interfaz de Compra
+            name = "Compra";
+            CompraController compraStub = new CompraController();
+            Naming.bind(name, compraStub);
+            
+            System.out.println("-- Stubs Creados al 100% --");         
+        } catch (RemoteException | AlreadyBoundException | MalformedURLException ex) {
             Logger.getLogger(LibrosRMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
