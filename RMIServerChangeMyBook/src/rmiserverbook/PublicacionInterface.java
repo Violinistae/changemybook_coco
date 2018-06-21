@@ -15,4 +15,9 @@ import java.util.ArrayList;
  */
 public interface PublicacionInterface extends Remote {
     public ArrayList<Publicacion> readPublicaciones() throws RemoteException;
+    public Publicacion readPublicacionById (int Id_Pub) throws RemoteException;
+    public int createPublicacion (String texto, int Id_Publicador, int precio,
+            String Foto) throws RemoteException;    
+    public int updatePublicacion (int Id_Pub, String texto, int Id_Publicador, int precio,
+            String Foto, int EstadoP) throws RemoteException;
 }

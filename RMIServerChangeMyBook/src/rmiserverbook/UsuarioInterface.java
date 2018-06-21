@@ -19,7 +19,7 @@ public interface UsuarioInterface extends Remote{
     // ----------------------- Methods for the UsuarioController ---------------
     public ArrayList<Usuario> readUsuarios() throws RemoteException;
     public Usuario readUsuarioByUsername (String Username) throws RemoteException;
-    public int createUser (int Id_U, String Username, String Password, 
+    public int createUser (String Username, String Password, 
             int Creditos) throws RemoteException;
     public int updateUser (String Username, String newUsername, String Password,
         int Creditos) throws RemoteException;

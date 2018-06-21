@@ -108,7 +108,7 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
     } 
     
     @Override
-    public int createUser (int Id_U, String Username, String Password, 
+    public int createUser (String Username, String Password, 
             int Creditos){
                      
         Usuario UCheck = readUsuarioByUsername(Username);        
@@ -160,11 +160,11 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
         try {   
             Connection con = this.createCon();
             stmt = con.prepareStatement(
-                "Update set Username = ?, Password = ?, Creditos = ?, Hash = ?"
+                "Update usuario set Username = ?, Password = ?, Creditos = ?, Hash = ?"
                         + "where Username = ?"
             );
             
-            String hashPswd, hashHash, hashCreditos;
+            String hashPswd, hashHash;
             hashPswd = encoder.encodePswd(Password);
             hashHash = encoder.getNewHash();            
             
