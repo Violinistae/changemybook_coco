@@ -6,6 +6,7 @@
 package rmiserverbook;
 import db.models.Publicacion;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -13,5 +14,5 @@ import java.util.ArrayList;
  * @author Emiliano
  */
 public interface PublicacionInterface extends Remote {
-    
+    public ArrayList<Publicacion> readPublicaciones() throws RemoteException;
 }

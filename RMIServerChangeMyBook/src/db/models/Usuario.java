@@ -5,11 +5,13 @@
  */
 package db.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Wero
  */
-public class Usuario {
+public class Usuario implements Serializable{
     
     private int Id_U;
     private String Username;
@@ -46,7 +48,7 @@ public class Usuario {
         return Creditos;
     }
 
-    public int setCreditos(int Creditos) {
+    public void setCreditos(int Creditos) {
         this.Creditos = Creditos;
     }
 

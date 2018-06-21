@@ -32,7 +32,29 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
         return con;
     }
     
-   @Override
+    public Usuario readUsuarioById (int Id_U) {
+        PreparedStatement stmt;
+        Usuario user = new Usuario();
+        ResultSet rs;
+        
+        try {
+            Connection con = this.createCon();
+            stmt = con.prepareStatement("Select * from usuario where Id_U = ?");
+            stmt.setInt(1, Id_U);
+            rs = stmt.executeQuery(); rs.next();
+            user.setId_U(rs.getInt("Id_U"));
+            user.setUsername(rs.getString("Username"));
+            user.setPassword(rs.getString("Passowrd"));
+            user.setCreditos(rs.getInt("Creditos"));
+            user.setHash(rs.getString("Hash"));  
+            return user;
+        } catch (SQLException ex) {
+            System.out.println(ex);        
+            return null;
+        }        
+    }
+    
+    @Override
     public ArrayList<Usuario> readUsuarios (){        
         PreparedStatement sqlStmnt;
         
