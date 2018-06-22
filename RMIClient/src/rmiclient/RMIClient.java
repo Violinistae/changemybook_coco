@@ -30,7 +30,7 @@ public class RMIClient {
         try {
             
             Operaciones op;            
-            op = (Operaciones)Naming.lookup("rmi://192.168.84.15/Operacion");
+            op = (Operaciones)Naming.lookup("rmi://localhost/Operacion");
             
             Fraccion frac1 = new Fraccion (3, 4);
             Fraccion frac2 = new Fraccion (5, 6);

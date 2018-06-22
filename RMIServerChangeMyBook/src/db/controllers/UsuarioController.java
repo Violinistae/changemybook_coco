@@ -44,7 +44,7 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
             rs = stmt.executeQuery(); rs.next();
             user.setId_U(rs.getInt("Id_U"));
             user.setUsername(rs.getString("Username"));
-            user.setPassword(rs.getString("Passowrd"));
+            user.setPassword(rs.getString("Password"));
             user.setCreditos(rs.getInt("Creditos"));
             user.setHash(rs.getString("Hash"));  
             return user;
@@ -85,6 +85,31 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
     }
     
     @Override
+    public Usuario login(String username, String password) {
+        PreparedStatement stmt;
+        Usuario user = new Usuario();
+        ResultSet rs;
+        
+        try {
+            Connection con = this.createCon();
+            stmt = con.prepareStatement("Select * from usuario where Username = ? and Password = ?");
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            
+            rs = stmt.executeQuery(); rs.next();
+            user.setId_U(rs.getInt("Id_U"));
+            user.setUsername(username);
+            user.setPassword("");
+            user.setCreditos(rs.getInt("Creditos"));
+            user.setHash(rs.getString("Hash"));  
+            return user;
+        } catch (SQLException ex) {
+            System.out.println(ex);        
+            return null;
+        }    
+    }
+    
+    @Override
     public Usuario readUsuarioByUsername (String Username) {
         PreparedStatement stmt;
         Usuario user = new Usuario();
@@ -97,7 +122,7 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
             rs = stmt.executeQuery(); rs.next();
             user.setId_U(rs.getInt("Id_U"));
             user.setUsername(Username);
-            user.setPassword(rs.getString("Passowrd"));
+            user.setPassword(rs.getString("Password"));
             user.setCreditos(rs.getInt("Creditos"));
             user.setHash(rs.getString("Hash"));  
             return user;
@@ -112,7 +137,7 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
             int Creditos){
                      
         Usuario UCheck = readUsuarioByUsername(Username);        
-        if (UCheck.getUsername().equals(Username)) {
+        if (UCheck != null) {
             return 0;               //Ya existe ese Username
         }
         
@@ -132,8 +157,8 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
             
             stmt.setString(1, Username);
             stmt.setString(2, hashPswd);
-            stmt.setString(3, hashHash);
-            stmt.setInt(4, Creditos);
+            stmt.setInt(3, Creditos);
+            stmt.setString(4, hashHash);
             stmt.executeUpdate();
             return 1;
             

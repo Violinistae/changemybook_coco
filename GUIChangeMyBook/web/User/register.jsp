@@ -31,18 +31,18 @@
             <h1 class="center">Registrarse</h1>
             <div class="row">
                 <div class="col s4"></div>
-                <form class="col s4">
+                <form class="col s4" action="../Register">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="username" type="text" class="validate">
+                            <input id="username" name="username" type="text" class="validate">
                             <label for="username">Nombre de Usuario</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
+                            <input id="password" name="password" type="password" class="validate">
                             <label for="password">Contraseña</label>
                         </div>
                         <div class="col s12 right-align">
-                            <a class="waves-effect waves-light btn blue"><i class="material-icons right">arrow_right</i>Continuar</a>
+                            <button type="submit" class="waves-effect waves-light btn blue"><i class="material-icons right">arrow_right</i>Continuar</button>
                         </div>
                     </div>
                 </form>

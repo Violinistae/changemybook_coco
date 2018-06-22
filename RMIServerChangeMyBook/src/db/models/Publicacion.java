@@ -5,6 +5,8 @@
  */
 package db.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Wero

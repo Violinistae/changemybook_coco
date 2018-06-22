@@ -29,6 +29,7 @@
         </nav>
         <div class="container">
             <h1>Index</h1>
+            ${sessionScope.username}
         </div>
     </body>
 </html>
