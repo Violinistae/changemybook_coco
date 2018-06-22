@@ -8,7 +8,7 @@ import db.models.Foro;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *

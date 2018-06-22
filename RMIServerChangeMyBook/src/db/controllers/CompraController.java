@@ -80,6 +80,40 @@ public class CompraController extends UnicastRemoteObject implements CompraInter
     }
     
     @Override
+    public Compra readCompraByPublicacion(int Id_Pub) {
+        PreparedStatement stmt;
+        Compra compra = new Compra();
+        ResultSet rs;
+        
+        try {
+            Connection con = this.createCon();
+            stmt = con.prepareStatement("Select * from compra where Publicacion = ?");
+            stmt.setInt(1, Id_Pub);
+            rs = stmt.executeQuery(); rs.next();
+            compra.setId_Compra(rs.getInt("Id_Compra"));                            
+            int id_publicacion = rs.getInt("Publicacion");
+            int id_comprador = rs.getInt("Comprador");               
+            try {
+                UsuarioController checkComprador = new UsuarioController();
+                Usuario comprador = checkComprador.readUsuarioById(id_comprador);
+                compra.setComprador(comprador);
+                PublicacionController checkPublicacion = new PublicacionController();
+                Publicacion publicacion = checkPublicacion.readPublicacionById(id_publicacion);
+                compra.setPublicacion(publicacion);                    
+            } catch (RemoteException ex) {               
+                System.out.println(ex);
+                return null;
+            }                                
+
+            compra.setDatetime(rs.getDate("Fecha"));            
+            return compra;
+        } catch (SQLException ex) {
+            System.out.println(ex);        
+            return null;
+        }
+    }
+    
+    @Override
     public Compra readCompraById(int Id_Compra) {
         PreparedStatement stmt;
         Compra compra = new Compra();
@@ -90,7 +124,7 @@ public class CompraController extends UnicastRemoteObject implements CompraInter
             stmt = con.prepareStatement("Select * from compra where Id_Compra = ?");
             stmt.setInt(1, Id_Compra);
             rs = stmt.executeQuery(); rs.next();
-            compra.setId_Compra(rs.getInt("Id_Mens"));                            
+            compra.setId_Compra(rs.getInt("Id_Compra"));                            
             int id_publicacion = rs.getInt("Publicacion");
             int id_comprador = rs.getInt("Comprador");               
             try {

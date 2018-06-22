@@ -81,6 +81,27 @@ public class PublicacionController extends UnicastRemoteObject implements Public
     }
     
     @Override
+    public int updateEstado_P (int Id_Pub, int state) {
+        PreparedStatement stmt;
+        
+        try {   
+            Connection con = this.createCon();
+            stmt = con.prepareStatement(
+                "Update publicacion set EstadoP = ? where Id_Pub = ?"
+            );                        
+            
+            
+            stmt.setInt(1, state);
+            stmt.setInt(2, Id_Pub);
+            stmt.executeUpdate();
+            return 1;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return 2;
+        }
+    }
+    
+    @Override
     public Publicacion readPublicacionById (int Id_Pub) {
         PreparedStatement stmt;
         Publicacion publicacion = new Publicacion();

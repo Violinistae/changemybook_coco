@@ -5,7 +5,6 @@
  */
 package Servlets;
 
-import db.models.Publicacion;
 import db.models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,13 +17,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import rmiserverbook.PublicacionInterface;
 import rmiserverbook.UsuarioInterface;
 
 /**
  *
  * @author Wero
  */
-public class Login extends HttpServlet {
+public class AddPublication extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +38,22 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession sesion = request.getSession();
             
             UsuarioInterface user;
             user = (UsuarioInterface)Naming.lookup("rmi://localhost/Usuario");
-            Usuario res = user.login((String)request.getParameter("username"), (String)request.getParameter("password"));
-            if(res != null) {
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("username", res.getUsername());
+            Usuario res = user.readUsuarioByUsername((String)sesion.getAttribute("username"));
+            
+            if(res != null) {                
+                
+                PublicacionInterface pub;
+                pub = (PublicacionInterface)Naming.lookup("rmi://localhost/Publicacion");
+                pub.createPublicacion((String)request.getParameter("text"), res.getId_U(), Integer.parseInt((String)request.getParameter("price")), "");
+                
                 response.sendRedirect("index.jsp");
             }
             else {
-                response.sendRedirect("register.jsp");
+                response.sendRedirect("addPublication.jsp");
             }
         } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             System.out.println(ex.getMessage());

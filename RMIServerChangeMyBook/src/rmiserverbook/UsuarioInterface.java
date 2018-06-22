@@ -24,5 +24,6 @@ public interface UsuarioInterface extends Remote{
             int Creditos) throws RemoteException;
     public int updateUser (String Username, String newUsername, String Password,
         int Creditos) throws RemoteException;
+    public int updateDinero (int Id_U, int dinero) throws RemoteException;
     
 }

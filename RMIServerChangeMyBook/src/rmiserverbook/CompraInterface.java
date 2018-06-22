@@ -21,5 +21,6 @@ public interface CompraInterface extends Remote{
     public Compra readCompraById(int Id_Compra) throws RemoteException;
     public int createCompra(int Comprador, int Publicacion, Date Fecha) throws RemoteException;
     public int removeCompra(int Id_Compra) throws RemoteException;
+    public Compra readCompraByPublicacion(int Id_Pub) throws RemoteException;
     
 }

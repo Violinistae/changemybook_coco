@@ -8,7 +8,7 @@ package rmiserverbook;
 import db.models.Res_Foro;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public interface Res_ForoInterface extends Remote{
     public ArrayList<Res_Foro> readRes_Foro() throws RemoteException;
+    public ArrayList<Res_Foro> readRes_ForoByMensaje(int Mensaje) throws RemoteException;
     public Res_Foro readRes_ForoById (int Id_Mens) throws RemoteException;
     public int createRes_ForoSms (String Res, int Remitente, Date Fecha,
         int ForoSms) throws RemoteException;

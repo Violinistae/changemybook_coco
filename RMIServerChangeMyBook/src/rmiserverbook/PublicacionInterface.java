@@ -20,4 +20,5 @@ public interface PublicacionInterface extends Remote {
             String Foto) throws RemoteException;    
     public int updatePublicacion (int Id_Pub, String texto, int Id_Publicador, int precio,
             String Foto, int EstadoP) throws RemoteException;
+    public int updateEstado_P (int Id_Pub, int state) throws RemoteException;
 }

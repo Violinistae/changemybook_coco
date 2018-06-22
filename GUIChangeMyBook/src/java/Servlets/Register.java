@@ -40,17 +40,17 @@ public class Register extends HttpServlet {
             
             UsuarioInterface user;
             user = (UsuarioInterface)Naming.lookup("rmi://localhost/Usuario");
-            int res = user.createUser((String)request.getParameter("username"), (String)request.getParameter("password"), 0);
+            int res = user.createUser((String)request.getParameter("username"), (String)request.getParameter("password"), 100);
             if(res == 1) {
                 HttpSession sesion = request.getSession();
                 if(sesion.getAttribute("username") != null)
                     sesion.removeAttribute("username");
                 
                 sesion.setAttribute("username", (String)request.getParameter("username"));
-                response.sendRedirect("./index.jsp");
+                response.sendRedirect("index.jsp");
             }
             else {
-                response.sendRedirect("./User/register.jsp");
+                response.sendRedirect("register.jsp");
             }
         } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             System.out.println(ex.getMessage());

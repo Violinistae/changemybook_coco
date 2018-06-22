@@ -11,6 +11,7 @@
 <%@page import="java.rmi.Naming"%>
 <%@page import="java.rmi.Naming"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="navbar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,23 +25,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="Assets/imgs/tab.png"/>
     </head>
     <body>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="./index.jsp" class="brand-logo">Inicio</a>
-                <ul class="right hide-on-med-and-down">
-                    <%
-                        HttpSession sesion = request.getSession();
-                        if(sesion.getAttribute("username") == null) {
-                            out.print("<li><a href='./User/login.jsp'><i class='material-icons left'>input</i>Ingresar</a></li>");
-                            out.print("<li><a href='./User/register.jsp'><i class='material-icons left'>add_box</i>Registrarse</a></li>");
-                        } else {
-                            out.print("<li><a href='./User/logout.jsp'><i class='material-icons left'>chevron_left</i>Salir</a></li>");
-                        }
-
-                    %>
-                </ul>
-            </div>
-        </nav>
         <div class="container">
             <h1>Lista de publicaciones</h1>
             <div class="row">
@@ -49,37 +33,18 @@
                 controller = (PublicacionInterface)Naming.lookup("rmi://localhost/Publicacion");
                 ArrayList<Publicacion> publicaciones = controller.readPublicaciones();
                 for(Publicacion publicacion : publicaciones) {
-                    if(sesion.getAttribute("username") != null){
-                        if(!publicacion.getPublicador().getUsername().equals(sesion.getAttribute("username"))){
-                            out.print("<div class='col s4'>");
-                                out.print("<div class='card'>");
-                                    out.print("<div class='card-image'>");
-                                        out.print("<img src='Assets/imgs/"+publicacion.getFoto()+"'/>");
-                                    out.print("</div>");
-                                    out.print("<div class='card-content'>");
-                                        out.print("<p>"+publicacion.getTexto()+"</p>");
-                                    out.print("</div>");
-                                    out.print("<div class='card-action'>");
-                                        out.print("<a href='details.jsp?id="+publicacion.getId_Pub()+"'>Ver a detalle</a>");
-                                    out.print("</div>");
-                                out.print("</div>");
+                    
+                    out.print("<div class='col s12'>");
+                        out.print("<div class='card'>");
+                            out.print("<div class='card-content'>");
+                                out.print("<p>"+publicacion.getTexto()+"</p>");
                             out.print("</div>");
-                        }
-                    } else {
-                        out.print("<div class='col s4'>");
-                            out.print("<div class='card'>");
-                                out.print("<div class='card-image'>");
-                                    out.print("<img src='Assets/imgs/"+publicacion.getFoto()+"'/>");
-                                out.print("</div>");
-                                out.print("<div class='card-content'>");
-                                    out.print("<p>"+publicacion.getTexto()+"</p>");
-                                out.print("</div>");
-                                out.print("<div class='card-action'>");
-                                    out.print("<a href='details.jsp?id="+publicacion.getId_Pub()+"'>Ver a detalle</a>");
-                                out.print("</div>");
+                            out.print("<div class='card-action'>");
+                                out.print("<a href='details.jsp?id="+publicacion.getId_Pub()+"'>Ver a detalle</a>");
                             out.print("</div>");
                         out.print("</div>");
-                    }
+                    out.print("</div>");
+                    
                 }
             %>
             </div>

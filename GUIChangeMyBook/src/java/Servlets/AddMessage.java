@@ -5,7 +5,6 @@
  */
 package Servlets;
 
-import db.models.Publicacion;
 import db.models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,18 +12,21 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import rmiserverbook.ForoInterface;
+import rmiserverbook.Res_ForoInterface;
 import rmiserverbook.UsuarioInterface;
 
 /**
  *
  * @author Wero
  */
-public class Login extends HttpServlet {
+public class AddMessage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +39,27 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+         try {
+            HttpSession sesion = request.getSession();
             
             UsuarioInterface user;
             user = (UsuarioInterface)Naming.lookup("rmi://localhost/Usuario");
-            Usuario res = user.login((String)request.getParameter("username"), (String)request.getParameter("password"));
-            if(res != null) {
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("username", res.getUsername());
-                response.sendRedirect("index.jsp");
+            Usuario res = user.readUsuarioByUsername((String)sesion.getAttribute("username"));
+            
+            if(res != null) {                
+                
+                Res_ForoInterface foro;
+                foro = (Res_ForoInterface)Naming.lookup("rmi://localhost/ResForo");
+                int rp = foro.createRes_ForoSms((String)request.getParameter("mensaje"), res.getId_U(), new Date(), Integer.parseInt((String)request.getParameter("id_foro")));
+                
+                if(rp == 1) {
+                    response.sendRedirect("ResForo.jsp?id="+(String)request.getParameter("id_foro"));
+                } else {
+                    response.sendRedirect("Foro.jsp");
+                }
             }
             else {
-                response.sendRedirect("register.jsp");
+                response.sendRedirect("addPublication.jsp");
             }
         } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             System.out.println(ex.getMessage());

@@ -12,7 +12,7 @@ import db.models.Usuario;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -143,6 +143,65 @@ public class Res_ForoController extends UnicastRemoteObject implements Res_ForoI
     }
 
     @Override
+    public ArrayList<Res_Foro> readRes_ForoByMensaje(int Mensaje) {
+        PreparedStatement sqlStmnt;
+        
+        ArrayList<Res_Foro> allResSms = new ArrayList();
+        Res_Foro sms;
+        ResultSet rs;
+        
+        try {
+            Connection con = this.createCon();
+            sqlStmnt = con.prepareStatement("Select * from res_foro where Mensaje = ?");
+            sqlStmnt.setInt(1, Mensaje);
+            rs = sqlStmnt.executeQuery();
+            
+            while(rs.next()) {
+                sms = new Res_Foro();
+                sms.setId_RF(rs.getInt("Id_RF"));
+                sms.setRespuestaM(rs.getString("RespuestaM"));                                
+                
+                int Id_Remitente = rs.getInt("Remitente");                
+                try {
+                    UsuarioController checkRemitente = new UsuarioController();
+                    Usuario remitente = checkRemitente.readUsuarioById(Id_Remitente);
+                    sms.setRemitente(remitente);                    
+                } catch (RemoteException ex) {
+                    //Favor de verificar cuando la longitud de este Array es de 0
+                    //significa que hubo un error
+                    System.out.println(ex);
+                    ArrayList<Res_Foro> rf = new ArrayList();
+                    return rf;
+                }
+                
+                sms.setFecha(rs.getDate("Fecha"));
+                
+                int Id_Mensaje = rs.getInt("Mensaje");                
+                try {
+                    ForoController checkForoSms = new ForoController();
+                    Foro smsForo = checkForoSms.readForoById(Id_Mensaje);
+                    sms.setMensaje(smsForo);
+                } catch (RemoteException ex) {
+                    //Favor de verificar cuando la longitud de este Array es de 0
+                    //significa que hubo un error
+                    System.out.println(ex);
+                    ArrayList<Res_Foro> rf = new ArrayList();
+                    return rf;
+                }  
+                                             
+                allResSms.add(sms);
+            }
+            return allResSms;
+        } catch (SQLException ex) {
+            //Favor de verificar cuando la longitud de este Array es de 0
+            //significa que hubo un error
+            System.out.println(ex);
+            ArrayList<Res_Foro> rf = new ArrayList();
+            return rf;
+        }
+    }
+    
+    @Override
     public int createRes_ForoSms(String Res, int Remitente, Date Fecha, int ForoSms) throws RemoteException {
         //Verificar si existe remitente? y mensaje?
         PreparedStatement stmt;
@@ -150,19 +209,22 @@ public class Res_ForoController extends UnicastRemoteObject implements Res_ForoI
         try {
             Connection con = this.createCon();
             stmt = con.prepareStatement(
-                "Insert into foro (RespuestaM, Remitente, Fecha, Mensaje)"
+                "Insert into res_foro (RespuestaM, Remitente, Fecha, Mensaje)"
                         + "values (?, ?, ?, ?)"
             );                                  
             
             stmt.setString(1, Res);
             stmt.setInt(2, Remitente);
-            stmt.setDate(3, Fecha);
+            java.sql.Date sqlFecha = new java.sql.Date(Fecha.getTime());
+            stmt.setDate(3, sqlFecha);
             stmt.setInt(4, ForoSms);
             stmt.executeUpdate();
             return 1;
             
         } catch (SQLException ex) {
             System.out.println(ex);
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getStackTrace());
             return 2;
         }
     }

@@ -133,6 +133,27 @@ public class UsuarioController extends UnicastRemoteObject implements UsuarioInt
     } 
     
     @Override
+    public int updateDinero (int Id_U, int dinero) {
+        PreparedStatement stmt;
+        
+        try {   
+            Connection con = this.createCon();
+            stmt = con.prepareStatement(
+                "Update usuario set Creditos = ? where Id_U = ?"
+            );                        
+            
+            
+            stmt.setInt(1, dinero);
+            stmt.setInt(2, Id_U);
+            stmt.executeUpdate();
+            return 1;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return 2;
+        }
+    }
+    
+    @Override
     public int createUser (String Username, String Password, 
             int Creditos){
                      

@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -124,7 +124,8 @@ public class ForoController extends UnicastRemoteObject implements ForoInterface
             
             stmt.setString(1, Mensaje);
             stmt.setInt(2, Remitente);
-            stmt.setDate(3, Fecha);         
+            java.sql.Date sqlFecha = new java.sql.Date(Fecha.getTime());
+            stmt.setDate(3, sqlFecha);         
             stmt.executeUpdate();
             return 1;
             
@@ -133,7 +134,5 @@ public class ForoController extends UnicastRemoteObject implements ForoInterface
             return 2;
         }  
     }
-    
-    
     
 }

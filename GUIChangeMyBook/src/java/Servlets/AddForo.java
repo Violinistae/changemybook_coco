@@ -5,7 +5,6 @@
  */
 package Servlets;
 
-import db.models.Publicacion;
 import db.models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,18 +12,21 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import rmiserverbook.ForoInterface;
+import rmiserverbook.PublicacionInterface;
 import rmiserverbook.UsuarioInterface;
 
 /**
  *
  * @author Wero
  */
-public class Login extends HttpServlet {
+public class AddForo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +40,32 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession sesion = request.getSession();
             
             UsuarioInterface user;
             user = (UsuarioInterface)Naming.lookup("rmi://localhost/Usuario");
-            Usuario res = user.login((String)request.getParameter("username"), (String)request.getParameter("password"));
-            if(res != null) {
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("username", res.getUsername());
-                response.sendRedirect("index.jsp");
+            Usuario res = user.readUsuarioByUsername((String)sesion.getAttribute("username"));
+            
+            if(res != null) {                
+                
+                ForoInterface foro;
+                foro = (ForoInterface)Naming.lookup("rmi://localhost/Foro");
+                int rp = foro.createForoSms((String)request.getParameter("mensaje"), res.getId_U(), new Date());
+                
+                if(rp == 1) {
+                    response.sendRedirect("index.jsp");
+                } else {
+                    response.sendRedirect("CrearForo.jsp");
+                }
             }
             else {
-                response.sendRedirect("register.jsp");
+                response.sendRedirect("addPublication.jsp");
             }
         } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             System.out.println(ex.getMessage());
             
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

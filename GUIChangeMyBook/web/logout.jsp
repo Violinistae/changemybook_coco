@@ -1,17 +1,21 @@
 <%-- 
-    Document   : test
-    Created on : 21-jun-2018, 22:12:53
+    Document   : logout
+    Created on : 21-jun-2018, 22:25:12
     Author     : Wero
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+
     HttpSession sesion = request.getSession();
     if(sesion.getAttribute("username") != null) {
-        response.sendRedirect("./index.jsp");
+        sesion.removeAttribute("username");
+        response.sendRedirect("index.jsp");
+    } else {
+        response.sendRedirect("index.jsp");
     }
-    
+
 %>
 <html>
     <head>
