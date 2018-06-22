@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import db.models.Publicacion;
 import db.models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,6 +41,7 @@ public class Login extends HttpServlet {
             
             UsuarioInterface user;
             user = (UsuarioInterface)Naming.lookup("rmi://localhost/Usuario");
+            Publicacion hola;
             Usuario res = user.login((String)request.getParameter("username"), (String)request.getParameter("password"));
             if(res != null) {
                 HttpSession sesion = request.getSession();

@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/GitHub/changemybook_coco/RMIServerChangeMyBook/src/rmiserverbook/LibrosRMIServer.java</file>
-            <file>file:/D:/GitHub/changemybook_coco/RMIServerChangeMyBook/src/db/controllers/UsuarioController.java</file>
-            <file>file:/D:/GitHub/changemybook_coco/RMIServerChangeMyBook/src/db/controllers/PublicacionController.java</file>
-            <file>file:/D:/GitHub/changemybook_coco/RMIServerChangeMyBook/src/rmiserverbook/PublicacionInterface.java</file>
-            <file>file:/D:/GitHub/changemybook_coco/RMIServerChangeMyBook/src/db/DBmanage.java</file>
-            <file>file:/D:/GitHub/changemybook_coco/RMIServerChangeMyBook/src/rmiserverbook/UsuarioInterface.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
