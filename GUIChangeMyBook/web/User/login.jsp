@@ -24,6 +24,13 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="login.jsp"><i class="material-icons left">input</i>Ingresar</a></li>
                     <li><a href="register.jsp"><i class="material-icons left">add_box</i>Registrarse</a></li>                   
+                    <%
+                        HttpSession sesion = request.getSession();
+                        if(sesion.getAttribute("username") != null) {
+                            out.print("<li><a href='register.jsp'><i class='material-icons left'>add_box</i>Salir</a></li>");
+                        }
+
+                    %>
                 </ul>
             </div>
         </nav>
