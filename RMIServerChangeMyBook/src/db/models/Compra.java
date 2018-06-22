@@ -18,6 +18,13 @@ public class Compra implements Serializable {
     private Usuario Comprador;
     private Publicacion Publicacion;
     private Date datetime;
+    
+    public Compra() {
+        this.Id_Compra = 0;
+        this.Comprador = new Usuario();
+        this.Publicacion = new Publicacion();
+        this.datetime = new Date();
+    }
 
     public int getId_Compra() {
         return Id_Compra;

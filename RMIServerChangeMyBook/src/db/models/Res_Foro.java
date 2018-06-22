@@ -19,6 +19,14 @@ public class Res_Foro implements Serializable {
     private Usuario Remitente;
     private Date Fecha;
     private Foro Mensaje;
+    
+    public Res_Foro() {
+        this.Id_RF = 0;
+        this.RespuestaM = "";
+        this.Remitente = new Usuario();
+        this.Fecha = new Date();
+        this.Mensaje = new Foro();
+    }
 
     public int getId_RF() {
         return Id_RF;

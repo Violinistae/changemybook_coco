@@ -124,7 +124,7 @@ public class ForoController extends UnicastRemoteObject implements ForoInterface
             
             stmt.setString(1, Mensaje);
             stmt.setInt(2, Remitente);
-            stmt.setDate(3, Fecha);            
+            stmt.setDate(3, Fecha);         
             stmt.executeUpdate();
             return 1;
             

@@ -19,6 +19,15 @@ public class Publicacion implements Serializable {
     private int Precio;
     private String Foto;
     private int EstadoP;
+    
+    public Publicacion() {
+        this.Id_Pub = 0;
+        this.Texto = "";
+        this.Publicador = new Usuario();
+        this.Precio = 0;
+        this.Foto = "";
+        this.EstadoP = 0;
+    }
 
     public int getId_Pub() {
         return Id_Pub;

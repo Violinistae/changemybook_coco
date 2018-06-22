@@ -6,11 +6,20 @@
 package rmiserverbook;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import db.models.*;
+import java.util.Date;
 
 /**
  *
  * @author Emiliano
  */
 public interface CompraInterface extends Remote{
+    
+    public ArrayList<Compra> readCompra() throws RemoteException;
+    public Compra readCompraById(int Id_Compra) throws RemoteException;
+    public int createCompra(int Comprador, int Publicacion, Date Fecha) throws RemoteException;
+    public int removeCompra(int Id_Compra) throws RemoteException;
     
 }

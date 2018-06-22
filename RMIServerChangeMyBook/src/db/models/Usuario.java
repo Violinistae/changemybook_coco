@@ -19,6 +19,13 @@ public class Usuario implements Serializable{
     private int Creditos;
     private String Hash;
     
+    public Usuario() {
+        this.Id_U = 0;
+        this.Username = "";
+        this.Password = "";
+        this.Creditos = 0;
+        this.Hash = "";
+    }
 
     public int getId_U() {
         return Id_U;

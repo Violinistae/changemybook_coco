@@ -6,7 +6,7 @@
 package db.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -18,6 +18,13 @@ public class Foro implements Serializable {
     private String Mensaje;
     private Usuario Remitente;
     private Date Fecha;
+    
+    public Foro() {
+        this.Id_Mens = 0;
+        this.Mensaje = "";
+        this.Remitente = new Usuario();
+        this.Fecha = new Date();
+    }
 
     public int getId_Mens() {
         return Id_Mens;
